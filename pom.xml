@@ -7,6 +7,12 @@
 	<name>DummyRestClient</name>
 	<description>DummyRestClient</description>
 	<packaging>jar</packaging>
+
+	<properties>
+		<docker.image.prefix>DummyMircroservice</docker.image.prefix>
+		<docker.repository.url>172.28.249.153:5000</docker.repository.url>
+	</properties>
+
 	<!-- For now it has to have this, but later it will be removed -->
 	<dependencyManagement>
 		<dependencies>
@@ -25,7 +31,7 @@
 		<dependency>
 			<groupId>com.genband.util</groupId>
 			<artifactId>broker-util</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>0.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.genband.util.ctl</groupId>
@@ -49,7 +55,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-				    <layout>JAR</layout>
+					<layout>JAR</layout>
 					<mainClass>com.genband.util.dummy.DummyApplication</mainClass>
 				</configuration>
 				<executions>
@@ -59,6 +65,26 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>${docker.repository.url}/${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+					</imageTags>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<useConfigFile>true</useConfigFile>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
