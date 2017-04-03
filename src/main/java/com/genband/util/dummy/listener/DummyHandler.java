@@ -1,7 +1,5 @@
 package com.genband.util.dummy.listener;
 
-import org.springframework.stereotype.Component;
-
 import com.genband.util.broker.model.Message;
 import com.genband.util.broker.model.OperationReceipt;
 import com.genband.util.broker.rabbitmq.annotation.RabbitmqMessageController;
@@ -11,7 +9,6 @@ import com.genband.util.dummy.svc.DummyService;
 import com.genband.util.log.slf4j.GbLogger;
 import com.genband.util.log.slf4j.GbLoggerFactory;
 
-@Component
 @RabbitmqMessageController(state = "work")
 public class DummyHandler {
 
@@ -42,24 +39,13 @@ public class DummyHandler {
     @RabbitmqMessageHandler(listenChannel = "self")
     public OperationReceipt handleMessage(Message message) {
         OperationReceipt receipt = new OperationReceipt();
-        log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        log.info("Message: \n " + message.getMessageBody());
-        log.info("Type: \n " + message.getMessageParams().getType());
-        log.info("Transcation-ID: \n " + message.getMessageParams().getTransactionId());
-        log.info("Message-ID: \n " + message.getMessageParams().getMessageId());
-        log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        this.dummyService.handleRoutedMessage(message);
         return receipt;
     }
 
     @RabbitmqMessageHandler(listenChannel = "unallocated")
     public OperationReceipt handleNewCommingMessage(Message message) {
         OperationReceipt receipt = new OperationReceipt();
-        log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        log.info("Unrouted Message: \n " + message.getMessageBody());
-        log.info("Type: \n " + message.getMessageParams().getType());
-        log.info("Transcation-ID: \n " + message.getMessageParams().getTransactionId());
-        log.info("Message-ID: \n " + message.getMessageParams().getMessageId());
-        log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
         this.dummyService.handleUnroutedMessage(message);
         return receipt;
     }

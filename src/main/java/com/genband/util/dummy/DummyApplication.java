@@ -18,6 +18,7 @@ public class DummyApplication {
 
         MessagingService svc = BrokerMessagingService.getService(BrokerType.RABBITMQ);
         svc.startConsumeMessaging();
+
         log.info("Dummy application started successfully! ");
     }
 
