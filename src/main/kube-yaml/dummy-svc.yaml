@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dummy-microservices
+  labels:
+    role: dummy
+spec:
+  ports:
+  - nodePort: 31122
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+    name: management-port
+  type: NodePort
+  selector:
+    component: dummy-microservices

@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.genband.dummy</groupId>
-	<artifactId>DummyMircroservice</artifactId>
+	<artifactId>dummy-mircroservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DummyRestClient</name>
+	<name>dummy-client</name>
 	<description>DummyRestClient</description>
 	<packaging>jar</packaging>
 
 	<properties>
-		<docker.image.prefix>DummyMircroservice</docker.image.prefix>
+		<docker.image.prefix>util-dummy</docker.image.prefix>
 		<docker.repository.url>172.28.249.153:5000</docker.repository.url>
 	</properties>
 

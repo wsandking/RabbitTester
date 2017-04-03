@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    component: dummy-microservices
+    roles: dummy
+  name: dummy-deploy
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        component: dummy-microservices
+        roles: dummy
+    spec:
+      containers:
+      - image: 172.28.249.153:5000/util-dummy/dummy-mircroservice:0.0.1-SNAPSHOT
+        name: dummy-micro
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SERVICE_NAME
+          value: "dummy-microservice"
+        - name: RABBIT_HOST
+          value: "rabbitmq-server-central"
+        - name: RABBIT_PORT
+          value: "5672"
+        - name: RABBIT_MANAGEMENT_PORT
+          value: "15672"

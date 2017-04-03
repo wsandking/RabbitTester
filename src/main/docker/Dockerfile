@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-oraclejdk8:slim
 VOLUME /tmp
-ADD DummyMircroservice*.jar app.jar
+ADD dummy-mircroservice*.jar app.jar
 RUN sh -c 'touch /app.jar'
 RUN sh -c 'mkdir -p /var/log/hazelcast-server'
 # ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
