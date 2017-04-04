@@ -29,14 +29,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.genband.util</groupId>
-			<artifactId>broker-util</artifactId>
-			<version>0.0.3</version>
-		</dependency>
-		<dependency>
 			<groupId>com.genband.util.ctl</groupId>
 			<artifactId>interface</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.5</version>
 		</dependency>
 	</dependencies>
 
@@ -83,7 +78,7 @@
 							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
-					<useConfigFile>true</useConfigFile>
+					<useConfigFile>false</useConfigFile>
 				</configuration>
 			</plugin>
 		</plugins>
