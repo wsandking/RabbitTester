@@ -26,16 +26,6 @@ public class DummyHandler {
 
     }
 
-    // @RabbitmqMessageHandlerConstructor(instanceType = "singleton", springbootEnabled = false, invokeProp = true)
-    // public DummyHandler(ConfigProperties prop) {
-    // log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    // log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    // log.info("%%%%%%%%%%% Default Constructor %%%%%%%%");
-    // log.info("" + prop.getRabbitmqHost());
-    // log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    // log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    // }
-
     @RabbitmqMessageHandler(listenChannel = "self")
     public OperationReceipt handleMessage(Message message) {
         OperationReceipt receipt = new OperationReceipt();
