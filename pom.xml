@@ -29,6 +29,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.genband.util</groupId>
+			<artifactId>broker-util</artifactId>
+			<version>0.0.7</version>
+		</dependency>
+		<dependency>
 			<groupId>com.genband.util.ctl</groupId>
 			<artifactId>interface</artifactId>
 			<version>0.0.6</version>
