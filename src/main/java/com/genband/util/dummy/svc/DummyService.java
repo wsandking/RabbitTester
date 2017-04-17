@@ -33,10 +33,10 @@ public class DummyService {
     public void handleUnroutedMessage(Message message) {
         log.info("Now will serving new subscriber: " + message.getMessageParams().getSubscriber());
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        log.info("Unrouted Message: " + message.getMessageBody());
+        log.info("Unrouted Message: " + message.getServiceData());
         log.info("Type: " + message.getMessageParams().getType());
-        log.info("Transcation-ID: " + message.getMessageParams().getTransactionId());
-        log.info("Message-ID: " + message.getMessageParams().getMessageId());
+        log.info("Transcation-ID: " + message.getMessageParams().getTransactionID());
+        log.info("Message-ID: " + message.getMessageParams().getMessageID());
         log.info("Message-Params: " + message.getMessageParams().toString());
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
@@ -44,10 +44,11 @@ public class DummyService {
         /**
          * Send Response Message, No Matter What
          */
-        Message responseMessage = util.buildMessage("This is the auto response for ROUTED",
-                message.getMessageParams().getSubscriber(), message.getMessageParams().getOriginatingMS());
+        Message responseMessage = util.buildMessage("internal", "SUBSCRIPTION", "This is the auto response for ROUTED",
+                "local-site", message.getMessageParams().getOriginatingMS(),
+                message.getMessageParams().getSubscriber());
         try {
-            svc.sendResponse(message.getMessageParams().getTransactionId(), responseMessage, "local-site",
+            svc.sendResponse(message.getMessageParams().getTransactionID(), responseMessage, "local-site",
                     message.getMessageParams().getCalledMessageQueue());
         } catch (Exception e) {
             log.error("Message sent failure: " + e.getMessage());
@@ -58,16 +59,17 @@ public class DummyService {
     public void handleRoutedMessage(Message message) {
         log.info("Routed subscriber: " + message.getMessageParams().getSubscriber());
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        log.info("Message: " + message.getMessageBody());
+        log.info("Message: " + message.getServiceData());
         log.info("Type: " + message.getMessageParams().getType());
-        log.info("Transcation-ID: " + message.getMessageParams().getTransactionId());
-        log.info("Message-ID: " + message.getMessageParams().getMessageId());
+        log.info("Transcation-ID: " + message.getMessageParams().getTransactionID());
+        log.info("Message-ID: " + message.getMessageParams().getMessageID());
         log.info("Message-Params: " + message.getMessageParams().toString());
         log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-        Message responseMessage = util.buildMessage("This is the auto response for ROUTED",
-                message.getMessageParams().getSubscriber(), message.getMessageParams().getOriginatingMS());
+        Message responseMessage = util.buildMessage("internal", "SUBSCRIPTION", "This is the auto response for ROUTED",
+                "local-site", message.getMessageParams().getOriginatingMS(),
+                message.getMessageParams().getSubscriber());
         try {
-            svc.sendResponse(message.getMessageParams().getTransactionId(), responseMessage, "local-site",
+            svc.sendResponse(message.getMessageParams().getTransactionID(), responseMessage, "local-site",
                     message.getMessageParams().getCalledMessageQueue());
         } catch (Exception e) {
             log.error("Message sent failure: " + e.getMessage());

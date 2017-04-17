@@ -13,11 +13,18 @@
 		<docker.repository.url>172.28.249.153:5000</docker.repository.url>
 	</properties>
 
+	<parent>
+		<groupId>com.genband.util</groupId>
+		<artifactId>base</artifactId>
+		<version>0.0.5</version>
+	</parent>
+
+
 	<!-- For now it has to have this, but later it will be removed -->
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<!-- Import dependency management from Spring Boot -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
 				<version>1.5.2.RELEASE</version>
@@ -29,14 +36,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.genband.util</groupId>
-			<artifactId>broker-util</artifactId>
-			<version>0.0.7</version>
-		</dependency>
-		<dependency>
 			<groupId>com.genband.util.ctl</groupId>
-			<artifactId>interface</artifactId>
-			<version>0.0.6</version>
+			<artifactId>control-interface</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -45,7 +46,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
